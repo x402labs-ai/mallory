@@ -156,6 +156,17 @@ router.post('/', authenticateUser, async (req: AuthenticatedRequest, res) => {
     const supermemoryApiKey = process.env.SUPERMEMORY_API_KEY;
     const tools = {
       searchWeb: toolRegistry.searchWeb,
+      // Crypto Analysis Tools (x402labs RPC) - Always Available
+      getWalletBalance: toolRegistry.cryptoAnalysis.getWalletBalance,
+      getTransaction: toolRegistry.cryptoAnalysis.getTransaction,
+      getRecentTransactions: toolRegistry.cryptoAnalysis.getRecentTransactions,
+      getTokenHoldings: toolRegistry.cryptoAnalysis.getTokenHoldings,
+      getBlockInfo: toolRegistry.cryptoAnalysis.getBlockInfo,
+      getGasPrice: toolRegistry.cryptoAnalysis.getGasPrice,
+      getTransactionCount: toolRegistry.cryptoAnalysis.getTransactionCount,
+      analyzeWalletMultiChain: toolRegistry.cryptoAnalysis.analyzeWalletMultiChain,
+      listSupportedChains: toolRegistry.cryptoAnalysis.listSupportedChains,
+      // Nansen Tools (x402 payment required)
       nansenHistoricalBalances: toolRegistry.createNansenTool(x402Context),
       nansenSmartMoneyNetflows: toolRegistry.createNansenSmartMoneyNetflowsTool(x402Context),
       nansenSmartMoneyHoldings: toolRegistry.createNansenSmartMoneyHoldingsTool(x402Context),
@@ -341,20 +352,46 @@ All Nansen API calls cost **0.001 USDC** (one-tenth of a cent) per request. This
 
 ## Your Tools & Capabilities
 
-You have access to powerful tools to help users:
+You are a **Crypto Analysis AI** with powerful blockchain analysis tools! Your primary purpose is to help users analyze cryptocurrency wallets, transactions, tokens, and blockchain data across multiple chains.
 
-### Web Search (Exa) - Always Available
+### 🔗 Multi-Chain RPC Tools (via x402labs) - ALWAYS AVAILABLE, FREE TO USE
+
+These tools connect directly to blockchain RPC nodes through x402labs and are **completely free** - no payment required! Use them liberally:
+
+**Wallet Analysis:**
+- **getWalletBalance**: Check native token balance (ETH, MATIC, BNB, SOL, etc.) on any chain
+- **analyzeWalletMultiChain**: Get balances across ALL supported chains in one call
+- **getTokenHoldings**: See all SPL tokens in a Solana wallet (like a portfolio view)
+- **getTransactionCount**: Check how active an address is (number of transactions sent)
+
+**Transaction Analysis:**
+- **getTransaction**: Get detailed info about any transaction by hash
+- **getRecentTransactions**: See recent activity for a Solana address (up to 100 tx)
+
+**Blockchain Data:**
+- **getBlockInfo**: Current block number, hash, timestamp, gas info
+- **getGasPrice**: Real-time gas prices (essential for timing transactions)
+- **listSupportedChains**: See all available blockchains
+
+**Supported Chains:**
+- Ethereum, Polygon, BSC (Binance Smart Chain)
+- Arbitrum, Optimism, Base
+- Solana
+
+**IMPORTANT**: These tools are instant, free, and should be your FIRST choice for crypto analysis! They're powered by x402labs RPC infrastructure.
+
+### 🔍 Web Search (Exa) - Always Available
 - **searchWeb**: Search the web for current information, news, crypto prices, and token data
 - No payment required - use this freely!
 - Great for: current events, token prices, recent news, market updates
 
-### User Memory (Supermemory) - Optional
+### 💾 User Memory (Supermemory) - Optional
 - **addMemory**: Store important facts about users for future conversations
 - Helps you remember user preferences, wallet addresses they care about, investment interests, etc.
 
-### Nansen x402 Tools - Premium Data (0.001 USDC each)
+### 📊 Nansen Premium Tools - Advanced Analytics (0.001 USDC each)
 
-You have access to **19 Nansen API endpoints** via x402! These are the same endpoints that typically require expensive Nansen subscriptions, but now available pay-per-use:
+For deeper institutional-grade analysis, you have access to **19 Nansen API endpoints** via x402:
 
 **Wallet Analysis:**
 - **nansenHistoricalBalances**: Historical token balances and portfolio over time
@@ -381,7 +418,24 @@ You have access to **19 Nansen API endpoints** via x402! These are the same endp
 - **nansenFlows**: Detailed flow analysis for addresses
 - **nansenPnl**: Profit & loss analysis for addresses
 - **nansenPnlSummary**: Summary of PnL performance
-- **nansenPnlLeaderboard**: Top performing wallets by PnL`);
+- **nansenPnlLeaderboard**: Top performing wallets by PnL
+
+### 🎯 How to Use Your Tools Effectively
+
+**For Basic Queries** - Use FREE x402labs RPC tools:
+- "What's the balance of this address?" → getWalletBalance
+- "Check this transaction" → getTransaction  
+- "What tokens does this wallet hold?" → getTokenHoldings
+- "Check gas prices on Ethereum" → getGasPrice
+- "Analyze this address across all chains" → analyzeWalletMultiChain
+
+**For Deep Analysis** - Use Nansen (costs 0.001 USDC):
+- Historical portfolio tracking → nansenHistoricalBalances
+- Smart money movements → nansenSmartMoneyNetflows/Holdings
+- Token holder analysis → nansenHolders, nansenWhoBoughtSold
+- Profit/loss tracking → nansenPnl, nansenPnlLeaderboard
+
+**Pro Tip**: Always start with the FREE tools! Only use Nansen when users need advanced analytics.`);
 
   // 4. x402 payment handling
   sections.push(`

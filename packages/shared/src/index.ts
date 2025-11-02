@@ -27,6 +27,9 @@ export * from './x402';
 export { EphemeralWalletManager, type GridTokenSender } from './x402/EphemeralWalletManager';
 export { X402PaymentService } from './x402/X402PaymentService';
 
+// x402labs RPC Service
+export * from './x402labs';
+
 // Grid utilities
 export { loadGridContextForX402, type GridContext, type GridContextOptions } from './grid/context';
 
