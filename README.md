@@ -1,6 +1,8 @@
-# Mallory
+# Mallory - Crypto Analysis Dapp
 
-Opinionated React Native crypto x AI chat app boilerplate with embedded wallet support, conversational AI, and dynamic UI component injection.
+**AI-powered cryptocurrency analysis across multiple blockchains with embedded wallet support.**
+
+Mallory is a React Native dapp that provides comprehensive blockchain analysis through direct RPC queries (via x402labs) and premium analytics (via Nansen x402). Analyze wallets, transactions, tokens, and on-chain activity across Ethereum, Polygon, BSC, Arbitrum, Optimism, Base, and Solana.
 
 ## 🏗️ Monorepo Structure
 
@@ -18,19 +20,42 @@ mallory/
 
 ### Client (Mobile & Web)
 - 🔐 **Authentication**: Google OAuth via Supabase
-- 💬 **AI Chat**: Streaming conversations with Claude
+- 💬 **AI Chat**: Streaming conversations with Claude for crypto analysis
 - 💰 **Embedded Wallet**: Grid-powered smart contract wallets
 - 🔑 **Client-Side Signing**: Secure transaction signing (keys never leave device)
 - 📱 **Cross-Platform**: iOS, Android, and Web from single codebase
 - 🎨 **Modern UI**: Beautiful, responsive design with Reanimated
+- 🔗 **Multi-Chain Support**: Ethereum, Polygon, BSC, Arbitrum, Optimism, Base, Solana
 
 ### Server (Backend API)
-- 🤖 **AI Streaming**: Claude integration with Server-Sent Events and extended thinking
-- 🔧 **AI Tools**: Web search (Exa), user memory (Supermemory), and 20+ Nansen data APIs
-- 💰 **x402 Payments**: Server-side implementation for premium data access
-- 💎 **Wallet Data**: Price enrichment via Birdeye API
+- 🤖 **AI Streaming**: Claude integration for crypto analysis guidance
+- 🔗 **x402labs RPC**: Direct blockchain queries across 7+ chains (FREE)
+- 🔧 **Analysis Tools**: Wallet tracking, transaction analysis, gas monitoring
+- 💰 **x402 Payments**: Micropayments for Nansen premium analytics
+- 📊 **Nansen Integration**: 19 premium endpoints for institutional-grade analysis
+- 💎 **Web Search**: Real-time crypto news and price data via Exa
 - 🔒 **Secure Auth**: Supabase JWT validation
 - 🚀 **Production Ready**: Comprehensive testing infrastructure
+
+## 🎯 Crypto Analysis Capabilities
+
+### Free Blockchain RPC (via x402labs)
+- **Multi-Chain Wallet Analysis**: Check balances across all supported chains
+- **Transaction Tracking**: Get detailed transaction information by hash
+- **Token Holdings**: View SPL token portfolios on Solana
+- **Gas Price Monitoring**: Real-time gas prices for transaction optimization
+- **Block Information**: Current blockchain state and metrics
+- **Activity Analysis**: Transaction counts and wallet activity patterns
+
+### Premium Analytics (Nansen via x402)
+- **Historical Data**: Track portfolio changes over time
+- **Smart Money Intelligence**: See what smart money is buying/selling
+- **Token Analysis**: Holder distribution, DEX trades, transfer patterns
+- **Flow Tracking**: Monitor token movements and whale activity
+- **PnL Analysis**: Profit/loss tracking and leaderboards
+- **Counterparty Analysis**: Who wallets interact with most
+
+**Cost**: Only 0.001 USDC (one-tenth of a cent) per Nansen call!
 
 ## 🚀 Quick Start
 
@@ -71,12 +96,13 @@ cp apps/server/.env.example apps/server/.env
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 ANTHROPIC_API_KEY=sk-ant-your-key
-BIRDEYE_API_KEY=your-birdeye-key
 GRID_API_KEY=your-grid-api-key
 
-# Optional (for AI tools):
-EXA_API_KEY=your-exa-key
-SUPERMEMORY_API_KEY=your-supermemory-key
+# Optional (for advanced features):
+X402LABS_API_KEY=your-x402labs-key    # Optional API key for x402labs RPC
+BIRDEYE_API_KEY=your-birdeye-key      # Token price data
+EXA_API_KEY=your-exa-key              # Web search
+SUPERMEMORY_API_KEY=your-supermemory-key  # User memory
 ```
 
 ### 3. Run Development Servers
@@ -122,14 +148,20 @@ bun run android
 See [apps/server/README.md](./apps/server/README.md) for detailed server documentation.
 
 **API Endpoints:**
-- `POST /api/chat` - AI chat streaming with tool calling
+- `POST /api/chat` - AI chat streaming with crypto analysis tools
 - `GET /api/wallet/holdings` - Wallet holdings with price data
 - `GET /health` - Health check
 
 **AI Tools:**
-- `searchWeb` - Web search via Exa (always available)
+- `searchWeb` - Web search for crypto news and prices via Exa (free)
+- `getWalletBalance` - Check balance on any chain via x402labs (free)
+- `getTransaction` - Get transaction details via x402labs (free)
+- `getTokenHoldings` - View Solana token portfolio via x402labs (free)
+- `analyzeWalletMultiChain` - Multi-chain wallet analysis via x402labs (free)
+- `getGasPrice` - Real-time gas prices via x402labs (free)
+- `getBlockInfo` - Current blockchain state via x402labs (free)
+- `nansen*` - 19 Nansen API endpoints for advanced analytics (requires x402 payments)
 - `addMemory` - User memory via Supermemory (optional)
-- `nansen*` - 20+ Nansen API endpoints for blockchain analytics (requires x402 payments)
 
 ## 🔑 Grid Wallet Integration
 
@@ -216,14 +248,13 @@ Apache License 2.0 - see [LICENSE](./LICENSE) for details.
 Built with:
 - [Expo](https://expo.dev) - React Native framework
 - [Grid (Squads)](https://developers.squads.so) - Embedded wallets
-- [Anthropic](https://anthropic.com) - Claude AI with extended thinking
-- [Exa](https://exa.ai) - AI-powered web search
-- [Supermemory](https://supermemory.ai) - User memory & RAG
-- [Supabase](https://supabase.com) - Auth & database
-- [Birdeye](https://birdeye.so) - Solana market data
+- [Anthropic](https://anthropic.com) - Claude AI for analysis guidance
+- [x402labs](https://x402labs.cloud) - Multi-chain RPC infrastructure
+- [Exa](https://exa.ai) - AI-powered web search for crypto news
 - [Nansen](https://nansen.ai) - Blockchain analytics (via x402)
 - [Faremeter](https://x402.org) - x402 payment protocol
-- [streamdown-rn](https://www.npmjs.com/package/streamdown-rn) - React Native markdown streaming
+- [Supabase](https://supabase.com) - Auth & database
+- [Birdeye](https://birdeye.so) - Solana market data
 
 ---
 
